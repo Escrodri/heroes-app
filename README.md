@@ -77,7 +77,7 @@ src/
 
 1. **Clonar el repositorio**
    ```bash
-   git clone <url-del-repositorio>
+   git clone https://github.com/Escrodri/heroes-app.git
    cd heroes-app
    ```
 
@@ -191,7 +191,7 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 ## 👨‍💻 Autor
 
-Desarrollado con ❤️ por [Tu Nombre]
+Desarrollado con ❤️ por Enmanuel
 
 ## 🙏 Agradecimientos
 
