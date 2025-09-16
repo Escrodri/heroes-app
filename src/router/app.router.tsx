@@ -1,33 +1,42 @@
+import { lazy } from 'react';
+import { createHashRouter, Navigate } from 'react-router';
 
-import { createBrowserRouter } from "react-router";
-import { HomePage } from '../heroes/pages/hero/home/HomePage';
-import { HeroPage } from '../heroes/pages/hero/hero/HeroPage';
-// import { SearchPage } from "@/heroes/pages/hero/search/SearchPage";
-import { HeroesLayout } from "@/heroes/layouts/HeroesLayout";
-import { lazy } from "react";
-import { AdminLayout } from "@/admin/layouts/AdminLayout";
-import { AdminPage } from "@/admin/pages/AdminPage";
+import { AdminLayout } from '@/admin/layouts/AdminLayout';
+import { AdminPage } from '@/admin/pages/AdminPage';
+import { HeroesLayout } from '@/heroes/layouts/HeroesLayout';
+import { HeroPage } from '@/heroes/pages/hero/HeroPage';
+import { HomePage } from '@/heroes/pages/home/HomePage';
 
-const SearchPage = lazy(() => import('@/heroes/pages/hero/search/SearchPage'));
-export const appRouter = createBrowserRouter([
+// import { SearchPage } from '@/heroes/pages/search/SearchPage';
+
+const SearchPage = lazy(() => import('@/heroes/pages/search/SearchPage'));
+
+// export const appRouter = createBrowserRouter([
+export const appRouter = createHashRouter([
   {
     path: '/',
     element: <HeroesLayout />,
-    children:[
+    children: [
       {
         index: true,
         element: <HomePage />,
       },
       {
-        path: '/heroes/1',
+        path: 'heroes/:idSlug',
         element: <HeroPage />,
       },
       {
-        path: '/search',
+        path: 'search',
         element: <SearchPage />,
       },
-    ]
+      {
+        path: '*',
+        // element: <h1>404</h1>,
+        element: <Navigate to="/" />,
+      },
+    ],
   },
+
   {
     path: '/admin',
     element: <AdminLayout />,
@@ -35,7 +44,7 @@ export const appRouter = createBrowserRouter([
       {
         index: true,
         element: <AdminPage />,
-      }
-    ]
-  }
+      },
+    ],
+  },
 ]);
